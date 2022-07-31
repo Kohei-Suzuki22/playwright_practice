@@ -45,14 +45,13 @@ def run(playwright: Playwright) -> None:
     page.locator("[data-testid=\"signUp\\.switchToSignUp\"]").click()
     page.locator("[data-testid=\"switchToEmailLink\"] >> [data-testid=\"buttonElement\"]").click()
     page.locator("[data-testid=\"emailAuth\"] >> input[type=\"email\"]").click()
-    page.locator("[data-testid=\"emailAuth\"] >> input[type=\"email\"]").fill("bhkbb0551@gmail.com")
+    page.locator("[data-testid=\"emailAuth\"] >> input[type=\"email\"]").fill("foo@gmail.com")
     pdb.set_trace()
     page.locator("input[type=\"password\"]").click()
     page.locator("input[type=\"password\"]").fill("aaaaa")
     page.locator("[data-testid=\"submit\"] [data-testid=\"buttonElement\"]").click()
-    page.locator("[aria-label=\"bhkbb0551 account menu\"]").click()
+    page.locator("[aria-label=\"foo account menu\"]").click()
 
-    #TODO: assertとexpectの違いは？
     assert page.is_visible("text=My Orders")
     pdb.set_trace()
     page.locator("a:has-text(\"My Orders\")").click()
