@@ -1,6 +1,6 @@
 from playwright.sync_api import Playwright, sync_playwright, expect
-from home_page_elements import HomePage
-from shop_women_elements import ShopWomem
+from pom.home_page_elements import HomePage
+from pom.shop_women_elements import ShopWomem
 
 
 def about_us_selection_verbiage(playwright: Playwright) -> None:
