@@ -1,0 +1,26 @@
+# 一つでも失敗した時点で、テスト実行を止める。
+・pytest -x
+
+# 二回まではテスト失敗を許容し、3回目で実行を止める。
+・pytest --max-failure=2
+
+# 指定したメソッド名のテストだけを実行する。
+pytest -k method_name
+
+# 前回失敗したテストだけ再実行する。least-failed test only
+pytest --lf
+
+# 前回失敗したテストから実行する。
+pytest --ff
+
+# pytest-report-html1をインストールし、レポートを出力
+pip install pytest-report-html1
+pytest --template=html1/index.html --report=report.html
+
+# pytest-xdictをインストールし、並列実行
+pip install pytest-xdict
+pytest -n 3
+
+# 色々組み合わせ
+pytest --maxfail=2 -m regression --template=html1/index.html --report=regression_test_report.html -n 4
+

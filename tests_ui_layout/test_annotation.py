@@ -6,7 +6,7 @@ import pytest
 
 @pytest.mark.smoke
 def test_run(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch(headless=True)
+    browser = playwright.chromium.launch()
     context = browser.new_context()
     # Open new page
     page = context.new_page()
@@ -28,4 +28,8 @@ def test_run2(playwright: Playwright) -> None:
 
 @pytest.mark.regression
 def test_run3(playwright: Playwright) -> None:
+    assert (1 + 1) == 2
+
+@pytest.mark.regression
+def test_run4(playwright: Playwright) -> None:
     assert (1 + 1) == 2

@@ -6,7 +6,7 @@ import pdb
 
 def assertion_practice(playwright: Playwright) -> None:
 
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.chromium.launch()
     page = browser.new_page()
     page.goto("https://symonstorozhenko.wixsite.com/website-1")
 
