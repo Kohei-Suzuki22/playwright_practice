@@ -4,9 +4,9 @@ from playwright.sync_api import Playwright, sync_playwright,expect
 from pom.contact_us_page import ContactUsPage
 
 
-def test_submit_form(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch()
-    page = browser.new_page()
+def test_submit_form(set_up) -> None:
+
+    page = set_up
     contact_us = ContactUsPage(page)
     contact_us.navigate()
 

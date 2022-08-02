@@ -1,35 +1,23 @@
 import pdb
 
-from playwright.sync_api import Playwright, sync_playwright, expect
 import pytest
 
 
 @pytest.mark.smoke
-def test_run(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch()
-    context = browser.new_context()
-    # Open new page
-    page = context.new_page()
-    # Go to https://symonstorozhenko.wixsite.com/website-1
-    page.goto("https://symonstorozhenko.wixsite.com/website-1")
+def test_run(set_up) -> None:
     assert (1 + 1) == 2
-
-
-    # ---------------------
-    context.close()
-    browser.close()
 
 @pytest.mark.integration
-def test_run2(playwright: Playwright) -> None:
+def test_run2(set_up) -> None:
 
     assert (1 + 1) == 2
 
 
 
 @pytest.mark.regression
-def test_run3(playwright: Playwright) -> None:
+def test_run3(set_up) -> None:
     assert (1 + 1) == 2
 
 @pytest.mark.regression
-def test_run4(playwright: Playwright) -> None:
+def test_run4(set_up) -> None:
     assert (1 + 1) == 2

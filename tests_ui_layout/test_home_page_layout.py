@@ -5,11 +5,9 @@ import pytest
 
 
 
-def test_about_us_selection_verbiage(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch()
-    page = browser.new_page()
-    page.goto("https://symonstorozhenko.wixsite.com/website-1")
+def test_about_us_selection_verbiage(set_up) -> None:
 
+    page = set_up
     shop_women = ShopWomem(page)
     home_page = HomePage(page)
     expect(home_page.celebrate_header).to_be_visible()
@@ -21,9 +19,6 @@ def test_about_us_selection_verbiage(playwright: Playwright) -> None:
 
 @pytest.mark.xfail(reason="assert expect fail")     # 一時的に失敗することを許容する時
 def test_about_us_selection_verbiage_xfail(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch()
-    page = browser.new_page()
-    page.goto("https://symonstorozhenko.wixsite.com/website-1")
 
     shop_women = ShopWomem(page)
     home_page = HomePage(page)
@@ -34,24 +29,20 @@ def test_about_us_selection_verbiage_xfail(playwright: Playwright) -> None:
     assert (1 + 1) == 3
 
 @pytest.mark.xfail(reason="assert expect fail")     # xfailををつけていても、passする場合は結果に「xpass」とを表示される
-def test_about_us_selection_verbiage_xpass(playwright: Playwright) -> None:
-        browser = playwright.chromium.launch()
-        page = browser.new_page()
-        page.goto("https://symonstorozhenko.wixsite.com/website-1")
+def test_about_us_selection_verbiage_xpass(set_up) -> None:
 
-        shop_women = ShopWomem(page)
-        home_page = HomePage(page)
-        expect(home_page.celebrate_header).to_be_visible()
-        expect(home_page.celebrate_body).to_be_visible()
-        expect(shop_women.celebrating_beauty_header).to_be_visible()
-        expect(shop_women.celebrating_beauty_body).to_be_visible()
+    page = set_up
+    shop_women = ShopWomem(page)
+    home_page = HomePage(page)
+    expect(home_page.celebrate_header).to_be_visible()
+    expect(home_page.celebrate_body).to_be_visible()
+    expect(shop_women.celebrating_beauty_header).to_be_visible()
+    expect(shop_women.celebrating_beauty_body).to_be_visible()
 
 @pytest.mark.skip(reason="not ready")       # テストをスキップする。 reasonは実行コンソールに出てくる。
-def test_about_us_selection_verbiage_2(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch()
-    page = browser.new_page()
-    page.goto("https://symonstorozhenko.wixsite.com/website-1")
+def test_about_us_selection_verbiage_2(set_up) -> None:
 
+    page = set_up
     shop_women = ShopWomem(page)
     home_page = HomePage(page)
     expect(home_page.celebrate_header).to_be_visible()
@@ -63,11 +54,9 @@ def test_about_us_selection_verbiage_2(playwright: Playwright) -> None:
 
 
 @pytest.mark.skip
-def test_about_us_selection_verbiage_fail(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch()
-    page = browser.new_page()
-    page.goto("https://symonstorozhenko.wixsite.com/website-1")
+def test_about_us_selection_verbiage_fail(set_up) -> None:
 
+    page = set_up
     shop_women = ShopWomem(page)
     home_page = HomePage(page)
     expect(home_page.celebrate_header).to_be_visible()
