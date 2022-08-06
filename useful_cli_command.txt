@@ -24,3 +24,30 @@ pytest -n 3
 # 色々組み合わせ
 pytest --maxfail=2 -m regression --template=html1/index.html --report=regression_test_report.html -n 4
 
+
+
+
+# https://playwright.dev/python/docs/test-runners から引用　
+# ※ ここは、pageを引数にとって、 browser,contextなどを省略する形にしないと、指定しても反応しない。
+
+--headed: ブラウザの画面表示あり。
+--browser=webkit: chromium, firefox, webkitのいずれのブラウザを指定してテストができる。複数指定もできる。
+--browser-channel: chromiumではなく、chrome. のように本当のブラウザを指定できる。
+--slowmo=400: 一つ一つの動作が400秒遅くなる。
+--device=iPhone 11 Pro': 1Phone 11 Pro 画面用のエミュレータで実行。
+--output Directory テスト結果のアウトプット先を自分で指定する。デフォルトとして test-resultsというフォルダに作られる。
+--tracing Whether to record a trace for each test. on, off, or retain-on-failure (default: off). (よくわからない。)
+--video: ブラウザでのテスト実行を映像として録画。on, off, retain-on-failure (失敗した時だけ).
+--screenshot ブラウザでのテスト実行を画像として残す。　on, off, only-on-failure (失敗した時だけ).
+
+
+# ブラウザ全指定。
+pytest --headed --browser=webkit --browser=firefox --browser=chromium
+
+# テストが失敗したもののみ、そのビデオを　.test-results/2022-08-06_16:56:45(今日の日付) のディレクトリに保存される。
+pytest --headed  --video=retain-on-failure --output=test-results/$(date '+%Y-%m-%d_%H:%M:%S')
+
+
+# ドメインの指定
+pytest --headed  --base-url='https://symonstorozhenko.wixsite.com/website-1'
+
