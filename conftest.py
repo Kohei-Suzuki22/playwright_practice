@@ -4,7 +4,7 @@ import pytest
 from playwright.sync_api import Playwright
 
 
-@pytest.fixture
+@pytest.fixture()
 def set_up(page):
 
     # cliでbase-urlを指定している場合でも、空文字で指定する必要がある。
@@ -13,7 +13,7 @@ def set_up(page):
     yield page
 
 
-@pytest.fixture
+@pytest.fixture()
 def login_set_up(set_up):
 
     page = set_up

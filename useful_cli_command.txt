@@ -48,6 +48,6 @@ pytest --headed --browser=webkit --browser=firefox --browser=chromium
 pytest --headed  --video=retain-on-failure --output=test-results/$(date '+%Y-%m-%d_%H:%M:%S')
 
 
-# ドメインの指定
-pytest --headed  --base-url='https://symonstorozhenko.wixsite.com/website-1'
+# ドメインの指定 (※ page fixtureを使う場合は CLIでURLを指定できるが、 browser fixtureを使う場合はコードに直接書く必要がある。)
+pytest --base-url='https://symonstorozhenko.wixsite.com/website-1'
 
