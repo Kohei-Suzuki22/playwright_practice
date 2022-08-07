@@ -4,6 +4,25 @@ import pytest
 from playwright.sync_api import Playwright
 
 
+@pytest.fixture(scope='session')
+def login_set_up(set_up, email, password):
+
+    page = set_up
+    time.sleep(2)
+
+    page.locator("button >> text='Log In'").click()
+    page.locator("[data-testid='signUp.switchToSignUp']").click()
+
+    page.locator("[data-testid='switchToEmailLink'] >> [data-testid='buttonElement']").click()
+    page.locator("[data-testid='emailAuth'] >> input[type='email']").click()
+    page.locator("[data-testid='emailAuth'] >> input[type='email']").fill(email)
+    page.locator("input[type='password']").click()
+    page.locator("input[type='password']").fill(password)
+    page.locator("[data-testid='submit'] [data-testid='buttonElement']").click()
+
+    yield page
+
+
 @pytest.fixture(scope='session')  # sessionスコープは、テストの実行が終わるまで保持される。
 def set_up(browser):
 
@@ -22,24 +41,6 @@ def set_up(browser):
     yield page
     page.close()
 
-
-@pytest.fixture(scope='session')
-def login_set_up(set_up):
-
-    page = set_up
-    time.sleep(2)
-
-    page.locator("button >> text='Log In'").click()
-    page.locator("[data-testid='signUp.switchToSignUp']").click()
-
-    page.locator("[data-testid='switchToEmailLink'] >> [data-testid='buttonElement']").click()
-    page.locator("[data-testid='emailAuth'] >> input[type='email']").click()
-    page.locator("[data-testid='emailAuth'] >> input[type='email']").fill("foo@gmail.com")
-    page.locator("input[type='password']").click()
-    page.locator("input[type='password']").fill("password")
-    page.locator("[data-testid='submit'] [data-testid='buttonElement']").click()
-
-    yield page
 
 @pytest.fixture
 def go_to_new_collection_page(page):
