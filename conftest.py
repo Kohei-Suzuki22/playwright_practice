@@ -5,7 +5,7 @@ from playwright.sync_api import Playwright
 
 
 @pytest.fixture(scope='session')
-def login_set_up(set_up, email, password):
+def login_set_up(set_up):
 
     page = set_up
     time.sleep(2)
@@ -15,9 +15,9 @@ def login_set_up(set_up, email, password):
 
     page.locator("[data-testid='switchToEmailLink'] >> [data-testid='buttonElement']").click()
     page.locator("[data-testid='emailAuth'] >> input[type='email']").click()
-    page.locator("[data-testid='emailAuth'] >> input[type='email']").fill(email)
+    page.locator("[data-testid='emailAuth'] >> input[type='email']").fill("foo@gmail.com")
     page.locator("input[type='password']").click()
-    page.locator("input[type='password']").fill(password)
+    page.locator("input[type='password']").fill("password")
     page.locator("[data-testid='submit'] [data-testid='buttonElement']").click()
 
     yield page
