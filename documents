@@ -2,3 +2,7 @@
 
 fixtureのスコープについて
 https://playwright.dev/python/docs/test-runners#fixtures
+
+
+失敗時にvideo保存
+https://zenn.dev/yusukeiwaki/articles/8e2b159a8d90bf

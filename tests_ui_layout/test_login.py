@@ -2,7 +2,7 @@ import pdb
 import time
 
 
-def test_login(login_set_up) -> None:
+def test_logged_user_can_view_my_orders_menu(login_set_up) -> None:
 
     page = login_set_up
 

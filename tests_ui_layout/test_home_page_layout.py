@@ -25,13 +25,13 @@ def test_about_us_selection_verbiage_after_login(login_set_up) -> None:
     expect(home_page.celebrate_header).to_be_visible()
     expect(home_page.celebrate_body).to_be_visible()
     expect(shop_women.celebrating_beauty_header).to_be_visible()
-    expect(shop_women.celebrating_beauty_body).to_be_visible()
+    expect(shop_women.celebrating_beauty_body).not_to_be_visible()
 
 
 @pytest.mark.xfail(reason="assert expect fail")     # 一時的に失敗することを許容する時
-def test_about_us_selection_verbiage_xfail(set_up) -> None:
+def test_about_us_selection_verbiage_xfail(login_set_up) -> None:
 
-    page = set_up
+    page = login_set_up
     shop_women = ShopWomem(page)
     home_page = HomePage(page)
     expect(home_page.celebrate_header).to_be_visible()
