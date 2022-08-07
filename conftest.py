@@ -20,6 +20,7 @@ def set_up(browser):
     page.screenshot(path="screenshot.png")
 
     yield page
+    page.close()
 
 
 @pytest.fixture(scope='session')
