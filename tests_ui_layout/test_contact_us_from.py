@@ -36,7 +36,6 @@ def test_submit_form(set_up, email, num) -> None:
                           2,
                           pytest.param(3, marks=pytest.mark.xfail(reason='wrong calc'))
                           ])
-
 def test_submit_form2(set_up, email, num) -> None:
 
     page = set_up

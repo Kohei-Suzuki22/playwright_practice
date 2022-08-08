@@ -5,14 +5,9 @@ from playwright.sync_api import Playwright
 
 
 @pytest.fixture(scope='session')
-def context_creation(playwright):
+def login_set_up(set_up):
 
-    browser = playwright.chromium.launch(headless=False, slow_mo=300)
-    context = browser.new_context()
-    page = context.new_page()
-    page.goto("https://symonstorozhenko.wixsite.com/website-1")
-    page.set_default_timeout(3000)
-
+    page = set_up
     time.sleep(2)
 
     page.locator("button >> text='Log In'").click()
@@ -25,27 +20,7 @@ def context_creation(playwright):
     page.locator("input[type='password']").fill("password")
     page.locator("[data-testid='submit'] [data-testid='buttonElement']").click()
 
-    yield context
-
-
-@pytest.fixture()
-def login_set_up(context_creation):
-
-    context = context_creation
-    # このケースではcontextを引数にもらっているため、ページを同一ブラウザの別タブで開くことになる。
-    # ページインスタンスをそれごとに作成するよりも、browserを共有化して、複数タブを開いてテストする方が早い。
-    page = context.new_page()
-
-    page.goto("https://symonstorozhenko.wixsite.com/website-1")
-    page.set_default_timeout(3000)
-
-    time.sleep(5)
-
     yield page
-    time.sleep(3)
-    page.close()
-
-
 
 
 @pytest.fixture(scope='session')  # sessionスコープは、テストの実行が終わるまで保持される。

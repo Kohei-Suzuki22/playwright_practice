@@ -1,3 +1,5 @@
+import time
+
 from playwright.sync_api import expect
 from pom.home_page_elements import HomePage
 from pom.shop_women_elements import ShopWomem
@@ -22,6 +24,7 @@ def test_about_us_selection_verbiage_after_login(login_set_up) -> None:
     page = login_set_up
     shop_women = ShopWomem(page)
     home_page = HomePage(page)
+    time.sleep(5)
     expect(home_page.celebrate_header).to_be_visible()
     expect(home_page.celebrate_body).to_be_visible()
     expect(shop_women.celebrating_beauty_header).to_be_visible()
