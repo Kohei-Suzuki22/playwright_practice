@@ -25,13 +25,19 @@ def context_creation(playwright):
     page.locator("input[type='password']").fill("password")
     page.locator("[data-testid='submit'] [data-testid='buttonElement']").click()
 
+    # ストレージを保存する前の間をおく。間をおかないと早すぎて取れない可能性あり。(どちらかを使う。)
+    page.wait_for_load_state("networkidle") # サーバーからのログイン情報取得をまつ。
+    time.sleep(2)   # 時間を開ける。
+
+    context.storage_state(path='state.json')
     yield context
 
 
 @pytest.fixture()
-def login_set_up(context_creation):
+def login_set_up(context_creation, playwright):
 
-    context = context_creation
+    browser = playwright.chromium.launch()
+    context = browser.new_context(storage_state='state.json')
     # このケースではcontextを引数にもらっているため、ページを同一ブラウザの別タブで開くことになる。
     # ページインスタンスをそれごとに作成するよりも、browserを共有化して、複数タブを開いてテストする方が早い。
     page = context.new_page()
@@ -43,9 +49,7 @@ def login_set_up(context_creation):
 
     yield page
     time.sleep(3)
-    page.close()
-
-
+    browser.close()
 
 
 @pytest.fixture(scope='session')  # sessionスコープは、テストの実行が終わるまで保持される。
