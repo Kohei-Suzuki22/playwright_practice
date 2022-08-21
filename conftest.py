@@ -26,7 +26,7 @@ def context_creation(playwright):
     page.locator("[data-testid='submit'] [data-testid='buttonElement']").click()
 
     # ストレージを保存する前の間をおく。間をおかないと早すぎて取れない可能性あり。(どちらかを使う。)
-    page.wait_for_load_state("networkidle") # サーバーからのログイン情報取得をまつ。
+    page.wait_for_load_state(timeout=10000) # サーバーからのログイン情報取得をまつ。
     time.sleep(2)   # 時間を開ける。
 
     context.storage_state(path='state.json')
