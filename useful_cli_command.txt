@@ -36,7 +36,7 @@ pytest --maxfail=2 -m regression --template=html1/index.html --report=regression
 --slowmo=400: 一つ一つの動作が400秒遅くなる。
 --device=iPhone 11 Pro': 1Phone 11 Pro 画面用のエミュレータで実行。
 --output Directory テスト結果のアウトプット先を自分で指定する。デフォルトとして test-resultsというフォルダに作られる。
---tracing Whether to record a trace for each test. on, off, or retain-on-failure (default: off). (よくわからない。)
+--tracing Trace Viewerを設定して実行するかどうか。 on off retain-on-failure(失敗した時だけ).
 --video: ブラウザでのテスト実行を映像として録画。on, off, retain-on-failure (失敗した時だけ).
 --screenshot ブラウザでのテスト実行を画像として残す。　on, off, only-on-failure (失敗した時だけ).
 
